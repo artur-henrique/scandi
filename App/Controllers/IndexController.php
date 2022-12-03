@@ -14,7 +14,8 @@ class indexController extends Action {
     public function get() {
         $produto = Container::getModel('produto');
         $produto = $produto->findAll();
-        return '';
+        print_r($produto);
+        return $produto;
     }
     public function post() {
         print_r($_POST);

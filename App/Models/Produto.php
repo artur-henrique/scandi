@@ -67,6 +67,7 @@ class Produto extends Model {
     public function findAll() {
         $query = "select * from produtos";
         $search = $this->db->query($query)->fetchAll();
+        $search = json_encode($search);
         return $search;
     }
 
