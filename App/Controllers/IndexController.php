@@ -18,7 +18,6 @@ class indexController extends Action {
         return $produto;
     }
     public function post() {
-        print_r($_POST);
         $produto = Container::getModel($_POST['type']);
         $produto->save();
     }
