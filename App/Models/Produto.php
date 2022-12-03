@@ -80,6 +80,12 @@ class Produto extends Model {
         $stmt = $this->db->prepare($query);
         $stmt->execute(array($this->__getSku(), $this->__getName(), $this->__getPrice(), $this->__getType(), $this->__getAttribute()));
     }
+
+    public function delete() {
+        $query = "delete from produtos where sku = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->execute(array($this->__getSku()));
+    }
 }
 
 ?>

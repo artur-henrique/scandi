@@ -26,6 +26,9 @@ class indexController extends Action {
         // Connect to DB
         // Create a function that deletes the product
         // Do I have to instanciate the Product? Does it make sense?
+        $produto = Container::getModel('produto');
+        $produto = $produto->delete();
+        return '';
     }
 
 }
