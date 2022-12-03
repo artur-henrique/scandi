@@ -21,6 +21,12 @@ class Route extends Bootstrap {
             'method' => 'post'
         );
 
+        $routes['delete'] = array(
+            'route' => '/produto',
+            'controller' => 'IndexController',
+            'method' => 'delete'
+        );
+
         $this->setRoutes($routes);
     }
 
