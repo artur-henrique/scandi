@@ -72,20 +72,30 @@ class Produto extends Model {
     }
 
     public function save() {
-        $this->__setSku($_POST['sku']);
-        $this->__setName($_POST['name']);
-        $this->__setPrice($_POST['price']);
-        $this->__setType($_POST['type']);
-        $this->__setAttribute($_POST['attribute']);
+        $body = file_get_contents('php://input');
+        $obj = json_decode($body);
+
+        $this->__setSku($obj->sku);
+        $this->__setName($obj->name);
+        $this->__setPrice($obj->price);
+        $this->__setType($obj->type);
+        $this->__setAttribute($obj->attribute);
+
         $query = "insert into produtos (sku, name, price, type, attribute) values (?, ?, ?, ?, ?)";
         $stmt = $this->db->prepare($query);
         $stmt->execute(array($this->__getSku(), $this->__getName(), $this->__getPrice(), $this->__getType(), $this->__getAttribute()));
     }
 
     public function delete() {
+        $body = file_get_contents('php://input');
+        $sku = json_decode($body);
+        $this->__setSku($sku->sku);
+        
         $query = "delete from produtos where sku = ?";
         $stmt = $this->db->prepare($query);
         $stmt->execute(array($this->__getSku()));
+        $this->db = null;
+        $stmt = null;
     }
 }
 

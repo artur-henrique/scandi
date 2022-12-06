@@ -14,21 +14,24 @@ class indexController extends Action {
     public function get() {
         $produto = Container::getModel('produto');
         $produto = $produto->findAll();
+        header("Content-Type: application/json");
         print_r($produto);
-        return $produto;
+        return;
     }
     public function post() {
-        $produto = Container::getModel($_POST['type']);
+        $body = file_get_contents('php://input');
+        $obj = json_decode($body);
+        
+        $produto = Container::getModel($obj->type);
         $produto->save();
+        http_response_code(201);
+        return;
     }
 
     public function delete() {
-        // Connect to DB
-        // Create a function that deletes the product
-        // Do I have to instanciate the Product? Does it make sense?
         $produto = Container::getModel('produto');
         $produto = $produto->delete();
-        return '';
+        return;
     }
 
 }
