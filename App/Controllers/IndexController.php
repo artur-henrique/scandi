@@ -23,9 +23,15 @@ class indexController extends Action {
         $obj = json_decode($body);
         
         $produto = Container::getModel($obj->type);
-        $produto->save();
-        http_response_code(201);
-        return;
+        try {
+            $produto->save();
+            http_response_code(201);
+            return;
+        } catch (\Exception $e) {
+            print_r($e->errorInfo[1]);
+            http_response_code(400);
+            return;
+        }
     }
 
     public function delete() {
