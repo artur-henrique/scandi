@@ -15,7 +15,7 @@ class Connection {
 
         } catch (\PDOException $e) {
             print_r($e);
-            return 'Caiu na exceção da conexão com o BD.';
+            return;
         }
     }
 }

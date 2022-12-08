@@ -38,7 +38,7 @@ class Produto extends Model {
     }
 
     public function __setPrice(float $price) {
-        if($price > 0) {
+        if($price >= 0) {
             $this->price = $price;
         } else {
             throw new \Exception("Price must be more than 0.");
