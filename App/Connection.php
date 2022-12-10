@@ -3,6 +3,7 @@
 namespace App;
 
 class Connection {
+
     public static function getDb() {
         try {
             // local
